@@ -1,0 +1,46 @@
+/*Main.css for WhoIsLookup*/
+
+#whois-table{
+	margin-left: auto;
+	margin-right: auto;
+
+	width: 800px;
+}
+
+.whois-row{
+	/*height: 20px;*/
+	line-height: 20px;
+	display: flex;
+}
+
+.whois-row > div:first-child{
+	flex: 3;
+}
+
+.whois-row > div+div{
+	flex: 7;
+}
+
+.whois-row > div:first-child{
+	font-weight: bold;
+}
+
+.whois-animation-enter {
+  opacity: 0.01;
+}
+
+.whois-animation-enter.whois-animation-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.whois-animation-leave {
+  opacity: 1;
+}
+
+.whois-animation-leave.whois-animation-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+

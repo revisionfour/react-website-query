@@ -1,6 +1,12 @@
 import React from "react";
 
 export default class SearchBar extends React.Component {
+	constructor(){
+		super();
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleEnter = this.handleEnter.bind(this);
+	}
 
 
 	handleChange(e){
@@ -14,18 +20,25 @@ export default class SearchBar extends React.Component {
 		var url = this.props.url;
 
 		if(val == 13){
+			var self = this.props;
+
 			$.ajax({
 				url: 'sendURL',
 				method: 'POST',
-				// dataType: 'json',
-				dataType: 'text',
+				dataType: 'json',
+				// dataType: 'text',
 				data: {
 					address: url
 				},
 				success: function(data){
-					console.log(data);
+					// console.log(data);
+					var i=0;
 
-					document.getElementById('whois-output').innerHTML = data;
+					data.forEach(function(obj){
+						obj.key = i++;
+					});
+
+					self.changeWhoIsData(data);
 				},
 				error: function(xhr, status, err){
 					// console.log(xhr);
@@ -40,11 +53,14 @@ export default class SearchBar extends React.Component {
 
 
 	render() {
+		console.log('Rendering SearchBar');
+
+
 		return (
 			<div>
 				<input 
 				value={this.props.url}
-				onChange={this.handleChange.bind(this)} 
+				onChange={this.handleChange} 
 				onKeyUp={this.handleEnter.bind(this)} 
 				style={{
 					display: 'block',
@@ -52,8 +68,10 @@ export default class SearchBar extends React.Component {
 					marginRight: 'auto'
 					}} 
 				/>
+				
 			</div>
 		)
 	}
 }
 
+// <button type="button" style={styles}>Search</button>

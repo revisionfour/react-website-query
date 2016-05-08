@@ -1,11 +1,15 @@
 import React from "react";
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-export default class SearchBar extends React.Component {
+import { changeWhoIsData, changeURL } from '../actions/index'
+
+class SearchBar extends React.Component {
 	constructor(){
 		super();
 
 		this.handleChange = this.handleChange.bind(this);
-		this.handleEnter = this.handleEnter.bind(this);
+		// this.handleEnter = this.handleEnter.bind(this);
 	}
 
 
@@ -14,43 +18,36 @@ export default class SearchBar extends React.Component {
 		this.props.changeURL(address);
 	}
 
-	handleEnter(e){
-		let val = e.which || e.keyCode;
+	onFormSubmit(e){
+		e.preventDefault();
 
-		var url = this.props.url;
+		var self = this.props;
 
-		if(val == 13){
-			var self = this.props;
+		var url = self.url;
 
-			$.ajax({
-				url: 'sendURL',
-				method: 'POST',
-				dataType: 'json',
-				// dataType: 'text',
-				data: {
-					address: url
-				},
-				success: function(data){
-					// console.log(data);
-					var i=0;
+		$.ajax({
+			url: 'sendURL',
+			method: 'POST',
+			dataType: 'json',
+			// dataType: 'text',
+			data: {
+				address: url
+			},
+			success: function(data){
+				var i=0;
 
-					data.forEach(function(obj){
-						obj.key = i++;
-					});
+				data.forEach(function(obj){
+					obj.key = i++;
+				});
 
-					self.changeWhoIsData(data);
-				},
-				error: function(xhr, status, err){
-					// console.log(xhr);
-					// console.log(status);
+				self.changeWhoIsData(url, data);
+			},
+			error: function(xhr, status, err){
+				console.error('There was an error!');
+			}
+		});
 
-					console.error('There was an error!');
-				}
-			});
-
-		}
 	}
-
 
 	render() {
 		console.log('Rendering SearchBar');
@@ -58,20 +55,32 @@ export default class SearchBar extends React.Component {
 
 		return (
 			<div>
-				<input 
-				value={this.props.url}
-				onChange={this.handleChange} 
-				onKeyUp={this.handleEnter.bind(this)} 
-				style={{
-					display: 'block',
-					marginLeft: 'auto', 
-					marginRight: 'auto'
-					}} 
-				/>
+				<form onSubmit={this.onFormSubmit.bind(this)}>
+					<input 
+						value={this.props.url} 
+						onChange={this.handleChange}
+						style={{
+							display: 'block',
+							marginLeft: 'auto', 
+							marginRight: 'auto'
+							}} 
+					/>
+				</form>
 				
 			</div>
 		)
 	}
 }
 
-// <button type="button" style={styles}>Search</button>
+function mapStateToProps(state){
+	return {
+		url: state.main.url
+	}
+}
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({changeWhoIsData: changeWhoIsData, changeURL: changeURL}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+

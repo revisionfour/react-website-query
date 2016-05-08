@@ -1,6 +1,6 @@
 ### To start
 
-_On the command line_
+**On the command line**
 	
 ```
 	webpack

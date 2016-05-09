@@ -9,9 +9,7 @@ class SearchBar extends React.Component {
 		super();
 
 		this.handleChange = this.handleChange.bind(this);
-		// this.handleEnter = this.handleEnter.bind(this);
 	}
-
 
 	handleChange(e){
 		let address = e.target.value;
@@ -22,14 +20,12 @@ class SearchBar extends React.Component {
 		e.preventDefault();
 
 		var self = this.props;
-
 		var url = self.url;
 
 		$.ajax({
 			url: 'sendURL',
 			method: 'POST',
 			dataType: 'json',
-			// dataType: 'text',
 			data: {
 				address: url
 			},
@@ -52,21 +48,18 @@ class SearchBar extends React.Component {
 	render() {
 		console.log('Rendering SearchBar');
 
-
 		return (
 			<div>
-				<form onSubmit={this.onFormSubmit.bind(this)}>
+				<form onSubmit={this.onFormSubmit.bind(this)} className="input-group">
 					<input 
-						value={this.props.url} 
+						className="form-control"
+						placeholder="Enter a url to lookup ex. lifehacker.com"
 						onChange={this.handleChange}
-						style={{
-							display: 'block',
-							marginLeft: 'auto', 
-							marginRight: 'auto'
-							}} 
 					/>
+					<span className="input-group-btn">
+						<button type="submit" className="btn btn-secondary">Submit</button>
+					</span>
 				</form>
-				
 			</div>
 		)
 	}

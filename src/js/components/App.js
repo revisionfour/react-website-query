@@ -5,7 +5,7 @@ import WhoIsList from '../containers/WhoIsList'
 
 const App = () => (
 	<div>
-		<div style={{textAlign:'center'}}>Who Is Lookup</div>
+		<h1 className="text-center">Who Is Lookup</h1>
 		<SearchBar />
 		<WhoIsList />
 	</div>

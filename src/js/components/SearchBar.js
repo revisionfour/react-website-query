@@ -8,11 +8,25 @@ class SearchBar extends React.Component {
 	constructor(){
 		super();
 
+		this.state = {
+			display: 'none'
+		}
+
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(e){
 		let address = e.target.value;
+
+		address = address.replace(/(http:\/\/)|(www\\.)|(\/$)/g,'')
+
+		if(address.match(/.+\.{1}.+/) === null && address != ''){
+			this.setState({display:'block'});
+		}
+		else{
+			this.setState({display:'none'});
+		}
+
 		this.props.changeURL(address);
 	}
 
@@ -60,6 +74,7 @@ class SearchBar extends React.Component {
 						<button type="submit" className="btn btn-secondary">Submit</button>
 					</span>
 				</form>
+				<div className="has-error" style={{display:this.state.display}}>Please enter a valid URL.</div>
 			</div>
 		)
 	}

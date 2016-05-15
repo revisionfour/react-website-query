@@ -21,9 +21,3 @@ render(
 		<Router history={browserHistory} routes={routes} />
 	</Provider>
 , app);
-
-// render(
-// 	<Provider store={store}>
-// 		<App />
-// 	</Provider>
-// , app);

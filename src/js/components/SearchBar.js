@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { changeWhoIsData, changeURL, changeTraceRoute } from '../actions/index'
+import { changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute} from '../actions/index'
 
 class SearchBar extends React.Component {
 	constructor(){
@@ -37,6 +37,7 @@ class SearchBar extends React.Component {
 		var url = self.url;
 
 		// set AJAX for getwhoislookup
+		self.loadingWhoIsData();
 
 		$.ajax({
 			url: 'getwhoislookup',
@@ -60,6 +61,7 @@ class SearchBar extends React.Component {
 		});
 
 		// set AJAX for gettraceroute
+		self.loadingTraceRoute();
 
 		$.ajax({
 			url: 'gettraceroute',
@@ -108,7 +110,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({changeWhoIsData, changeURL, changeTraceRoute}, dispatch);
+	return bindActionCreators({changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

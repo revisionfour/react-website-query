@@ -9,3 +9,19 @@ html, body {
 .input-group{
 	margin: 20px 0px;
 }
+
+/*.loader{
+	position: fixed;
+	background-color: rgba(204,204,204, 0.8);
+}*/
+
+li .glyphicon{
+	margin-right: 5px;
+}
+
+.loading{
+	width: 14px;
+	height: 14px;
+
+	background-image: url("../img/ajax-loader14x14.gif");
+}

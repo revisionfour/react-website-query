@@ -113,10 +113,3 @@ function mapDispatchToProps(dispatch){
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
 
-
-// function mapDispatchToProps(dispatch){
-// 	return bindActionCreators({changeWhoIsData, changeURL}, dispatch);
-// }
-
-// export default connect(null, mapDispatchToProps)(SearchBar);
-

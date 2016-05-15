@@ -1,4 +1,7 @@
-### WhoIs Lookup with redux
+### WhoIs Lookup, Trace Route
+
+Uses React, Redux, React-router, Google Maps API, react-google-maps and much more
+
 
 ### To start
 
@@ -8,3 +11,8 @@
 	webpack
 	npm start
 ```
+
+### To Do
+
+Add ping and other tools
+Add AJAX loader

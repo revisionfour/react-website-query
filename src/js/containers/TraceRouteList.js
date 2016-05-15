@@ -40,11 +40,3 @@ class TraceRouteList extends React.Component{
 }
 
 export default TraceRouteList;
-
-// function mapStateToProps(state){
-// 	return {
-// 		markers: state.TraceRoute.traceRoute
-// 	}
-// }
-
-// export default connect(mapStateToProps)(TraceRouteList);

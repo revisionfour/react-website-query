@@ -23,6 +23,4 @@ function mapStateToProps(state){
 	}
 }
 
-// export default TraceRoute;
-
 export default connect(mapStateToProps)(TraceRoute);

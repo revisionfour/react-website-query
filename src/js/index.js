@@ -7,8 +7,6 @@ import { Provider } from 'react-redux'
 
 import { Router, browserHistory } from 'react-router';
 
-// import App from './components/App';
-
 import routes from './routes';
 
 // const store = createStore(rootReducer);
@@ -21,9 +19,3 @@ render(
 		<Router history={browserHistory} routes={routes} />
 	</Provider>
 , app);
-
-// render(
-// 	<Provider store={store}>
-// 		<App />
-// 	</Provider>
-// , app);

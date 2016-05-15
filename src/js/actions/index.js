@@ -22,11 +22,3 @@ export function changeTraceRoute(data){
 		traceroute: data
 	}
 }
-
-// export function changeWhoIsData(url, data){
-// 	return {
-// 		type: 'WHOIS_DATA_CHANGED',
-// 		url: url,
-// 		whoIsData: data
-// 	}
-// }

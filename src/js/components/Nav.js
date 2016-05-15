@@ -17,6 +17,3 @@ class Nav extends React.Component{
 }
 
 export default Nav;
-
-// <li role="navigation"><Link to="/">WhoIs Lookup</Link></li>
-// 					<li role="navigation"><Link to="/traceroute">TraceRoute</Link></li>

@@ -1,5 +1,7 @@
 ### WhoIs Lookup, Trace Route
 
+Nice WHoIS Lookup and visual Trace Route with Google Maps
+
 Uses React, Redux, React-router, Google Maps API, react-google-maps and much more
 
 
@@ -15,4 +17,3 @@ Uses React, Redux, React-router, Google Maps API, react-google-maps and much mor
 ### To Do
 
 * Add ping and other tools
-* Add AJAX loader

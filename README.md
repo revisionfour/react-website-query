@@ -14,5 +14,5 @@ Uses React, Redux, React-router, Google Maps API, react-google-maps and much mor
 
 ### To Do
 
-Add ping and other tools
-Add AJAX loader
+* Add ping and other tools
+* Add AJAX loader

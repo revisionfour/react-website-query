@@ -14,9 +14,11 @@ class WhoIsList extends React.Component {
 	}
 
 	render(){
+		/*
 		if(this.props.entries === undefined){
 			return null;
 		}
+		*/
 
 		console.log('Rendering WhoIsTable');
 
@@ -25,8 +27,8 @@ class WhoIsList extends React.Component {
 				<thead>
 					<tr>
 						<th className="col-md-1">#</th>
-						<th className="col-md-3">Attribute</th>
-						<th className="col-md-6">Value</th>
+						<th className="col-md-4">Attribute</th>
+						<th className="col-md-7">Value</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,7 +42,7 @@ class WhoIsList extends React.Component {
 
 function mapStateToProps(state){
 	return {
-		entries: state.main.whoIsData
+		entries: state.WhoIs.whoIsData
 	}
 }
 

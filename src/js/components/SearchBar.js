@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { changeWhoIsData, changeURL } from '../actions/index'
+import { changeWhoIsData, changeURL, changeTraceRoute } from '../actions/index'
 
 class SearchBar extends React.Component {
 	constructor(){
@@ -36,8 +36,10 @@ class SearchBar extends React.Component {
 		var self = this.props;
 		var url = self.url;
 
+		// set AJAX for getwhoislookup
+
 		$.ajax({
-			url: 'sendURL',
+			url: 'getwhoislookup',
 			method: 'POST',
 			dataType: 'json',
 			data: {
@@ -50,7 +52,26 @@ class SearchBar extends React.Component {
 					obj.key = i++;
 				});
 
-				self.changeWhoIsData(url, data);
+				self.changeWhoIsData(data);
+			},
+			error: function(xhr, status, err){
+				console.error('There was an error!');
+			}
+		});
+
+		// set AJAX for gettraceroute
+
+		$.ajax({
+			url: 'gettraceroute',
+			method: 'POST',
+			dataType: 'json',
+			data: {
+				address: url
+			},
+			success: function(data){
+				console.log(data);
+
+				self.changeTraceRoute(data);
 			},
 			error: function(xhr, status, err){
 				console.error('There was an error!');
@@ -74,7 +95,7 @@ class SearchBar extends React.Component {
 						<button type="submit" className="btn btn-secondary">Submit</button>
 					</span>
 				</form>
-				<div className="has-error" style={{display:this.state.display}}>Please enter a valid URL.</div>
+				<div className="text-warning" style={{display:this.state.display}}>Please enter a valid URL.</div>
 			</div>
 		)
 	}
@@ -82,13 +103,20 @@ class SearchBar extends React.Component {
 
 function mapStateToProps(state){
 	return {
-		url: state.main.url
+		url: state.ActiveURL.url
 	}
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({changeWhoIsData: changeWhoIsData, changeURL: changeURL}, dispatch);
+	return bindActionCreators({changeWhoIsData, changeURL, changeTraceRoute}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+
+
+// function mapDispatchToProps(dispatch){
+// 	return bindActionCreators({changeWhoIsData, changeURL}, dispatch);
+// }
+
+// export default connect(null, mapDispatchToProps)(SearchBar);
 

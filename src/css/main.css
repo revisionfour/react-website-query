@@ -1,4 +1,10 @@
-/*Main.css for WhoIsLookup*/
+/*Main.css for react website query*/
+
+html, body { 
+	height:100%;
+	margin: 0;
+	padding: 0;
+}
 
 .input-group{
 	margin: 20px 0px;

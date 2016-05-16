@@ -39,28 +39,12 @@ app.post('/gettraceroute', function(req, res){
 	Traceroute.trace('google.com', (err, hops) => {
     if (err) {throw err;}
 
-    console.log(hops);
-
     var outputData = [];
 
-    // var newHops = hops.filter(function(val){
-    // 	return typeof val !== 'boolean'
-    // });
-
-    // for(var i=0; i<hops.length; i++){
-    // 	outputData.push(geoip.lookup(newHops[i]));
-    // }
-
-    // for(var i=0; i<hops.length; i++){
-    // 	outputData.push(Object.assign({ip: val in newHops[i]}, geoip.lookup(newHops[i]) ));
-    // }
-
-    // Object.assign({}, obj)
 
     for(var i=0; i<hops.length; i++){
     	if(typeof hops[i] !== 'boolean'){
     		for(val in hops[i]){
-    			console.log('Should be an ip --> ' + val);
 
     			outputData.push(
     				Object.assign( 
@@ -72,12 +56,7 @@ app.post('/gettraceroute', function(req, res){
     	}
     }
 
-    
-
-    // res.send(hops);
-
     res.send(outputData);
-
 	});
 
 });

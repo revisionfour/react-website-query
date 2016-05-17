@@ -10,15 +10,12 @@ class NavLink extends React.Component{
 		this.handleClick = this.handleClick.bind(this)
 	}
 
-
 	handleClick(e){
 		this.props.changePath();
 	}
 
 	render(){
-
 		var currentClass = window.location.pathname == this.props.to ? 'active' : '';
-
 		var iconClass = `glyphicon ${this.props.icon}`;
 
 		return (

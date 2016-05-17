@@ -13,6 +13,7 @@ export default function TraceRouteMap (props) {
             defaultCenter={{ lat: 39.480611, lng: -98.001497 }}
           >
           {props.markers.map( (marker, index) => {
+            index++;
             var label = `${index}: ${marker.city}, ${marker.region} ${marker.country}`;
 
             console.log(label);

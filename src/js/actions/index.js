@@ -29,11 +29,11 @@ export function loadingWhoIsData(){
 	}
 }
 
-export function changeTraceRoute(data){
+export function changeTraceRoute(data, isLoading = false){
 	return {
 		type: TRACEROUTE_DATA_CHANGED,
 		traceroute: data,
-		loading: false
+		loading: isLoading
 	}
 }
 

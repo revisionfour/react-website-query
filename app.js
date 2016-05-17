@@ -5,11 +5,29 @@ var io = require('socket.io')(server);
 
 const port = 3000;
 
+var path = require('path');
+
+var whois = require('node-whois');
+var parser = require('parse-whois');
+
+const Traceroute = require('./traceroute');
+const geoip = require('geoip-lite');
+
+var bodyParser = require('body-parser');
+
+app.use(express.static('src'));
+
+// Parses the body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 io.on('connection', function(socket){
   console.log('client connected!!');
 
 
-  socket.emit('init', 'got this here!!!');
+  socket.emit('init', port);
 
 
   /*
@@ -19,6 +37,8 @@ io.on('connection', function(socket){
   */
 
   socket.on('gettraceroute', function(obj){
+
+    // socket.emit('cleartraceroute');
 
     var url = obj.url;
 
@@ -73,32 +93,13 @@ io.on('connection', function(socket){
     trace.on('done', (hops) => {
       console.log('All the hops!!');
       console.log(hops);
-      socket.emit('traceroutedone');
+      socket.emit('traceroutedone', hops);
     });
 
   });
 
 
 });
-
-
-var path = require('path');
-
-var whois = require('node-whois');
-var parser = require('parse-whois');
-
-const Traceroute = require('traceroute');
-const geoip = require('geoip-lite');
-
-var bodyParser = require('body-parser');
-
-app.use(express.static('src'));
-
-// Parses the body
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
 
 app.post('/getwhoislookup', function(req, res){
 	var url = req.body.address;

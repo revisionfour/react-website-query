@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux'
 
 import { changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute} from '../actions/index';
 
-// import { socket } from './App';
-
 class SearchBar extends React.Component {
 	constructor(){
 		super();
@@ -16,6 +14,10 @@ class SearchBar extends React.Component {
 
 		this.handleChange = this.handleChange.bind(this);
 	}
+
+	/*componentDidMount(){
+		
+	}*/
 
 	handleChange(e){
 		let address = e.target.value;

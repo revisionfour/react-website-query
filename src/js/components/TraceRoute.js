@@ -10,46 +10,40 @@ import { changeTraceRoute } from '../actions/index';
 
 class TraceRoute extends React.Component{
 
+	/*
 	constructor(){
 		super();
 		this.state = {
-			hops: []
+			hops: [],
+			isDone: false
 		}
-	}
-/*
-	componentWillMount(){
+	}*/
 
-		var self = this;
+	/*componentWillMount(){
+		
 
-		socket.on('traceroute', function(hop){
-			var newArray = self.state.hops.slice();
-			newArray.push(hop);
-			self.setState({hops:newArray});
-			console.log('------------------');
-			console.log(hop);
-
-			// self.props.changeTraceRoute(newArray);
-		});
-
-		socket.on('traceroutedone', function(){
-			console.log('traceroutedone');
-			self.props.changeTraceRoute(self.state.hops);
-			self.setState({hops:[]});
-		});
-
-	}
-	*/
+	}*/
 
 	render(){
 		return (
 			<div>
 				<h1 className="text-center">Trace Route</h1>
-				<TraceRouteMap markers={this.state.hops} />
-				<TraceRouteList markers={this.state.hops} />
+				<TraceRouteMap markers={this.props.markers} />
+				<TraceRouteList markers={this.props.markers} />
 			</div>
 		);
 	}
 }
+
+// render(){
+// 		return (
+// 			<div>
+// 				<h1 className="text-center">Trace Route</h1>
+// 				<TraceRouteMap markers={this.state.hops} />
+// 				<TraceRouteList markers={this.state.hops} />
+// 			</div>
+// 		);
+// 	}
 
 	// render(){
 	// 	return (
@@ -61,6 +55,7 @@ class TraceRoute extends React.Component{
 	// 	);
 	// }
 
+
 function mapStateToProps(state){
 	return {
 		markers: state.TraceRoute.traceRoute
@@ -69,12 +64,13 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps)(TraceRoute);
 
+
 /*
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({changeTraceRoute}, dispatch);
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(TraceRoute);
+export default connect(null,mapDispatchToProps)(TraceRoute);
 */
 
 

@@ -15,7 +15,3 @@ Streams traceroute data to browser via Socket.io
 	webpack
 	npm start
 ```
-
-### To Do
-
-* Add ping and other tools

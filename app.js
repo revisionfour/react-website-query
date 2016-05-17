@@ -36,7 +36,7 @@ app.post('/getwhoislookup', function(req, res){
 app.post('/gettraceroute', function(req, res){
 	var url = req.body.address;
 
-	Traceroute.trace('google.com', (err, hops) => {
+	Traceroute.trace(url, (err, hops) => {
     if (err) {throw err;}
 
     var outputData = [];

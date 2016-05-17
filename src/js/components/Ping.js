@@ -6,6 +6,7 @@ class Ping extends React.Component{
 		return (
 			<div>
 				<h1 className="text-center">Ping</h1>
+				<div>Coming Soon!</div>
 			</div>
 		);
 	}

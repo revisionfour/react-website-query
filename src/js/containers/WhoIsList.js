@@ -14,12 +14,6 @@ class WhoIsList extends React.Component {
 	}
 
 	render(){
-		/*
-		if(this.props.entries === undefined){
-			return null;
-		}
-		*/
-
 		console.log('Rendering WhoIsTable');
 
 		return (

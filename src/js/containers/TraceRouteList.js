@@ -22,7 +22,6 @@ class TraceRouteList extends React.Component{
 	}
 
 	render(){
-
 		console.log('Rendering TraceRouteList');
 
 		return (

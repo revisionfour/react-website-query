@@ -15,10 +15,6 @@ class SearchBar extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 
-	/*componentDidMount(){
-		
-	}*/
-
 	handleChange(e){
 		let address = e.target.value;
 
@@ -36,14 +32,6 @@ class SearchBar extends React.Component {
 
 	onFormSubmit(e){
 		e.preventDefault();
-
-		/*if(this.props.tracerouteLoading){
-			this.setState({
-				displayTraceroute: 'block',
-				message: 'Must wait for traceroute to complete.'
-			});
-			return;
-		}*/
 
 		var self = this.props;
 		var url = self.url;
@@ -76,26 +64,6 @@ class SearchBar extends React.Component {
 		self.loadingTraceRoute();
 
 		socket.emit('gettraceroute', {url});
-
-		/*
-		$.ajax({
-			url: 'gettraceroute',
-			method: 'POST',
-			timeout: 120000,
-			dataType: 'json',
-			data: {
-				address: url
-			},
-			success: function(data){
-				console.log(data);
-
-				self.changeTraceRoute(data);
-			},
-			error: function(xhr, status, err){
-				console.error('Connection timed out!');
-			}
-		});
-		*/
 
 	}
 

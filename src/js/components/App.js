@@ -36,9 +36,6 @@ class App extends React.Component{
 		var self = this;
 
 		socket.on('traceroute', function(hop){
-			console.log('hop---> ' + hop);
-
-
 			var newArray = self.state.hops.slice();
 
 			if(self.state.isDone){
@@ -50,31 +47,16 @@ class App extends React.Component{
 				newArray = [];
 			}
 
-			// var newArray = self.state.hops.slice();
-
-
 			newArray.push(hop);
 			self.setState({hops:newArray});
-			console.log('------------------');
-			console.log(hop);
 
 			self.props.changeTraceRoute(newArray, true);
 		});
 
-		/*socket.on('traceroutedone', function(hops){
-			console.log('traceroutedone');
-			self.props.changeTraceRoute(hops, false);
-			self.setState({
-				hops:hops,
-				isDone:true
-			});
-		});*/
-
-		socket.on('traceroutedone', function(hops){
+		socket.on('traceroutedone', function(){
 			console.log('traceroutedone');
 			self.props.changeTraceRoute(self.state.hops, false);
 			self.setState({
-				hops:hops,
 				isDone:true
 			});
 		});
@@ -100,15 +82,9 @@ function mapStateToProps(state){
 	}
 }
 
-// export default App
-
-// Just added this, not clearing markers correctly. Do something
-
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({changeTraceRoute},dispatch);
 }
-
-// export default connect(null, mapDispatchToProps)(App);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 

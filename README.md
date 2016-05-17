@@ -1,6 +1,6 @@
 ### WhoIs Lookup, Trace Route, Ping
 
-Nice WHoIS Lookup, visual Trace Route with Google Maps, and Ping
+Nice WhoIS Lookup, visual Trace Route with Google Maps, and Ping
 
 Uses React, Redux, React-router, Socket.io, Google Maps API, react-google-maps and much more
 

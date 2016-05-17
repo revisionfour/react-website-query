@@ -22,6 +22,8 @@ class Nav extends React.Component{
 		var whoisIcon = this.props.whoIsLoading ? 'loading' : 'glyphicon-user' ;
 		var tracerouteIcon = this.props.traceRouteLoading ? 'loading' : 'glyphicon-map-marker' ;
 
+		var pingIcon = 'glyphicon-hourglass';
+
 		console.log('Rendering Nav');
 
 		return (
@@ -29,6 +31,7 @@ class Nav extends React.Component{
 				<ul className="nav nav-tabs">
 					<NavLink changePath={this.changePath} to="/" icon={whoisIcon} name="WhoIs Lookup" />
 					<NavLink changePath={this.changePath} to="/traceroute" icon={tracerouteIcon} name="TraceRoute" />
+					<NavLink changePath={this.changePath} to="/ping" icon={pingIcon} name="Ping" />
 				</ul>
 			</nav>
 		);

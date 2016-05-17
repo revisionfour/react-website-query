@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute} from '../actions/index'
+import { changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute} from '../actions/index';
+
+// import { socket } from './App';
 
 class SearchBar extends React.Component {
 	constructor(){
@@ -63,9 +65,13 @@ class SearchBar extends React.Component {
 		// set AJAX for gettraceroute
 		self.loadingTraceRoute();
 
+		socket.emit('gettraceroute', {url});
+
+		/*
 		$.ajax({
 			url: 'gettraceroute',
 			method: 'POST',
+			timeout: 120000,
 			dataType: 'json',
 			data: {
 				address: url
@@ -76,9 +82,10 @@ class SearchBar extends React.Component {
 				self.changeTraceRoute(data);
 			},
 			error: function(xhr, status, err){
-				console.error('There was an error!');
+				console.error('Connection timed out!');
 			}
 		});
+		*/
 
 	}
 

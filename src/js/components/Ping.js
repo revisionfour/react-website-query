@@ -1,15 +1,29 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+
 class Ping extends React.Component{
 
 	render(){
 		return (
 			<div>
 				<h1 className="text-center">Ping</h1>
-				<div>Coming Soon!</div>
+				<ul class="list-group">
+				{this.props.pingData.map(function(ping){
+					return (
+						<li class="list-group-item">{ping}</li>
+					);
+				})}
+				</ul>
 			</div>
 		);
 	}
 }
 
-export default Ping;
+function mapStateToProps(state){
+	return {
+		pingData: state.Ping.pingData
+	}
+}
+
+export default connect(mapStateToProps)(Ping);

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute} from '../actions/index';
+import { changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute, changePing} from '../actions/index';
 
 class SearchBar extends React.Component {
 	constructor(){
@@ -65,6 +65,8 @@ class SearchBar extends React.Component {
 
 		socket.emit('gettraceroute', {url});
 
+		self.changePing([],true);
+		socket.emit('getping', {url});
 	}
 
 	render() {
@@ -97,7 +99,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute}, dispatch);
+	return bindActionCreators({changeWhoIsData, loadingWhoIsData, changeURL, changeTraceRoute, loadingTraceRoute, changePing}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

@@ -1,3 +1,5 @@
+const Child = require('child_process');
+
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
@@ -26,12 +28,10 @@ app.use(bodyParser.urlencoded({
 io.on('connection', function(socket){
   console.log('client connected!!');
 
-
-  socket.emit('init', port);
-
   socket.on('gettraceroute', function(obj){
-    var url = obj.url;
+    console.log('gettraceroute');
 
+    var url = obj.url;
     const trace = Traceroute.trace(url);
 
     trace.on('hop', (hop) => {
@@ -63,6 +63,25 @@ io.on('connection', function(socket){
       socket.emit('traceroutedone');
       
     });
+
+  });
+
+  socket.on('getping', function(obj){
+    const ping = Child.spawn('ping', ['-c','10',obj.url]);
+
+    ping.stdout.on('data', (data) => {
+      socket.emit('pingresult', data.toString());
+    });
+
+    ping.stderr.on('data', (data) => {
+      console.log(`stderr: ${data}`);
+    });
+
+    ping.on('close', (code) => {
+      socket.emit('pingresult', 'FINISHED');
+      console.log(`child process exited with code ${code}`);
+    });
+
 
   });
 

@@ -21,8 +21,14 @@ export default function TraceRouteMap (props) {
             index++;
             var label = `${index}: ${city}, ${region} ${marker.country}`;
 
-            return <Marker key={label} position={{ lat: marker.ll[0], lng: marker.ll[1] }} label={label} />
-          } )}
+            return <Marker 
+                      key={label} 
+                      position={{ lat: marker.ll[0], lng: marker.ll[1] }} 
+                      label={index.toString()}
+                      defaultAnimation={2}
+                      title={label}
+                    />
+          })}
           </GoogleMap>
         }
       />

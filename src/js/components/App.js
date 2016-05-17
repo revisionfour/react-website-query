@@ -7,7 +7,7 @@ import SearchBar from './SearchBar'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { changeTraceRoute } from '../actions/index';
+import { changeTraceRoute, changePing } from '../actions/index';
 
 import io from 'socket.io-client';
 
@@ -18,6 +18,7 @@ class App extends React.Component{
 
 		this.state = {
 			hops: [],
+			pings:[],
 			isDone: true
 		}
 	}
@@ -61,6 +62,15 @@ class App extends React.Component{
 			});
 		});
 
+		socket.on('pingresult',function(data){
+			console.log('Ping result!!!');
+			console.log(data);
+
+			// self.props.pingData
+
+			self.props.changePing([...self.props.pingData, data], data == 'FINISHED' ? false : true);
+		});
+
 	}
 
 	render(){
@@ -78,12 +88,13 @@ class App extends React.Component{
 
 function mapStateToProps(state){
 	return {
-		markers: state.TraceRoute.traceRoute
+		markers: state.TraceRoute.traceRoute,
+		pingData: state.Ping.pingData
 	}
 }
 
 function mapDispatchToProps(dispatch){
-	return bindActionCreators({changeTraceRoute},dispatch);
+	return bindActionCreators({changeTraceRoute, changePing },dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

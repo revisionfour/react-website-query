@@ -6,6 +6,16 @@ export const WHOIS_DATA_LOADING = 'WHOIS_DATA_LOADING';
 export const TRACEROUTE_DATA_CHANGED = 'TRACEROUTE_DATA_CHANGED';
 export const TRACEROUTE_DATA_LOADING = 'TRACEROUTE_DATA_LOADING';
 
+export const PING_DATA_CHANGED = 'PING_DATA_CHANGED';
+
+export function changePing(data, isLoading = false){
+	return {
+		type: PING_DATA_CHANGED,
+		pingData: data,
+		loading: isLoading
+	}
+}
+
 export function changeURL(url){
 	return {
 		type: URL_CHANGED,

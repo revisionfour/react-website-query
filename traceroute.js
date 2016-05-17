@@ -19,6 +19,7 @@ internals.Traceroute.trace = function (host, callback) {
 
   EventEmitter.call(this);
 };
+
 Util.inherits(Emitter, EventEmitter);
 const emitter = new Emitter();
 

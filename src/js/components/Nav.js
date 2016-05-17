@@ -13,7 +13,6 @@ class Nav extends React.Component{
 
 	changePath(){
 		console.log('Force a rerender');
-
 		this.forceUpdate();
 	}
 
@@ -24,7 +23,7 @@ class Nav extends React.Component{
 		var whoisIcon = this.props.whoIsLoading ? 'loading' : 'glyphicon-user' ;
 		var tracerouteIcon = this.props.traceRouteLoading ? 'loading' : 'glyphicon-map-marker' ;
 
-		var pingIcon = 'glyphicon-hourglass';
+		var pingIcon = this.props.pingLoading ? 'loading' : 'glyphicon-hourglass';
 
 		return (
 			<nav>
@@ -41,7 +40,8 @@ class Nav extends React.Component{
 function mapStateToProps(state){
 	return {
 		whoIsLoading: state.WhoIs.loading,
-		traceRouteLoading: state.TraceRoute.loading
+		traceRouteLoading: state.TraceRoute.loading,
+		pingLoading: state.Ping.loading
 	}
 }
 

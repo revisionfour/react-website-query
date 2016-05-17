@@ -19,12 +19,12 @@ class Nav extends React.Component{
 
 
 	render(){
+		console.log('Rendering Nav');
+		
 		var whoisIcon = this.props.whoIsLoading ? 'loading' : 'glyphicon-user' ;
 		var tracerouteIcon = this.props.traceRouteLoading ? 'loading' : 'glyphicon-map-marker' ;
 
 		var pingIcon = 'glyphicon-hourglass';
-
-		console.log('Rendering Nav');
 
 		return (
 			<nav>

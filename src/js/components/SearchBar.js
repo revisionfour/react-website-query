@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
 		super();
 
 		this.state = {
-			display: 'none'
+			displayWarning: 'none'
 		}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -25,10 +25,10 @@ class SearchBar extends React.Component {
 		address = address.replace(/(http:\/\/)|(www\\.)|(\/$)/g,'')
 
 		if(address.match(/.+\.{1}.+/) === null && address != ''){
-			this.setState({display:'block'});
+			this.setState({displayWarning:'block'});
 		}
 		else{
-			this.setState({display:'none'});
+			this.setState({displayWarning:'none'});
 		}
 
 		this.props.changeURL(address);
@@ -36,6 +36,14 @@ class SearchBar extends React.Component {
 
 	onFormSubmit(e){
 		e.preventDefault();
+
+		/*if(this.props.tracerouteLoading){
+			this.setState({
+				displayTraceroute: 'block',
+				message: 'Must wait for traceroute to complete.'
+			});
+			return;
+		}*/
 
 		var self = this.props;
 		var url = self.url;
@@ -100,13 +108,14 @@ class SearchBar extends React.Component {
 					<input 
 						className="form-control"
 						placeholder="Enter a url to lookup ex. lifehacker.com"
+						disabled={this.props.tracerouteLoading?'disabled':''}
 						onChange={this.handleChange}
 					/>
 					<span className="input-group-btn">
-						<button type="submit" className="btn btn-secondary">Submit</button>
+						<button type="submit" disabled={this.props.tracerouteLoading?'disabled':''} className="btn btn-secondary">Submit</button>
 					</span>
 				</form>
-				<div className="text-warning" style={{display:this.state.display}}>Please enter a valid URL.</div>
+				<div className="text-warning" style={{display:this.state.displayWarning}}>Please enter a valid URL.</div>
 			</div>
 		)
 	}
@@ -114,7 +123,8 @@ class SearchBar extends React.Component {
 
 function mapStateToProps(state){
 	return {
-		url: state.ActiveURL.url
+		url: state.ActiveURL.url,
+		tracerouteLoading: state.TraceRoute.loading
 	}
 }
 

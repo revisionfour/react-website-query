@@ -93,7 +93,14 @@ io.on('connection', function(socket){
     trace.on('done', (hops) => {
       console.log('All the hops!!');
       console.log(hops);
-      socket.emit('traceroutedone', hops);
+      // socket.emit('traceroutedone', hops.filter(function(val){
+      //   return typeof val != 'boolean'; 
+      // }));
+
+      socket.emit('traceroutedone', hops.filter(function(val){
+        return typeof val != 'boolean'; 
+      }));
+      
     });
 
   });

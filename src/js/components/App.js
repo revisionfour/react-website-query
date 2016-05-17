@@ -11,15 +11,13 @@ import { changeTraceRoute } from '../actions/index';
 
 import io from 'socket.io-client';
 
-// var socket = io();
-
 class App extends React.Component{
 
 	constructor(){
 		super();
 
 		this.state = {
-			hop: [],
+			hops: [],
 			isDone: true
 		}
 	}
@@ -38,6 +36,10 @@ class App extends React.Component{
 		var self = this;
 
 		socket.on('traceroute', function(hop){
+			console.log('hop---> ' + hop);
+
+
+			var newArray = self.state.hops.slice();
 
 			if(self.state.isDone){
 				console.log('clear it all');
@@ -45,9 +47,12 @@ class App extends React.Component{
 					hops:[],
 					isDone:false
 				});
+				newArray = [];
 			}
 
-			var newArray = self.state.hops.slice();
+			// var newArray = self.state.hops.slice();
+
+
 			newArray.push(hop);
 			self.setState({hops:newArray});
 			console.log('------------------');
@@ -56,9 +61,18 @@ class App extends React.Component{
 			self.props.changeTraceRoute(newArray, true);
 		});
 
-		socket.on('traceroutedone', function(hops){
+		/*socket.on('traceroutedone', function(hops){
 			console.log('traceroutedone');
 			self.props.changeTraceRoute(hops, false);
+			self.setState({
+				hops:hops,
+				isDone:true
+			});
+		});*/
+
+		socket.on('traceroutedone', function(hops){
+			console.log('traceroutedone');
+			self.props.changeTraceRoute(self.state.hops, false);
 			self.setState({
 				hops:hops,
 				isDone:true
@@ -68,6 +82,8 @@ class App extends React.Component{
 	}
 
 	render(){
+		console.log('Rendering App');
+
 		return (
 			<div>
 				<SearchBar />
@@ -78,10 +94,22 @@ class App extends React.Component{
 	}
 }
 
+function mapStateToProps(state){
+	return {
+		markers: state.TraceRoute.traceRoute
+	}
+}
+
 // export default App
+
+// Just added this, not clearing markers correctly. Do something
 
 function mapDispatchToProps(dispatch){
 	return bindActionCreators({changeTraceRoute},dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(App);
+// export default connect(null, mapDispatchToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+

@@ -40,6 +40,7 @@ export function changeTraceRoute(data, isLoading = false){
 export function loadingTraceRoute(){
 	return {
 		type: TRACEROUTE_DATA_LOADING,
+		traceroute: [],
 		loading: true
 	}
 }

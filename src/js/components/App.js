@@ -63,11 +63,6 @@ class App extends React.Component{
 		});
 
 		socket.on('pingresult',function(data){
-			console.log('Ping result!!!');
-			console.log(data);
-
-			// self.props.pingData
-
 			self.props.changePing([...self.props.pingData, data], data == 'FINISHED' ? false : true);
 		});
 

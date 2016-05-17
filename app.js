@@ -29,7 +29,6 @@ io.on('connection', function(socket){
   console.log('client connected!!');
 
   socket.on('gettraceroute', function(obj){
-    console.log('gettraceroute');
 
     var url = obj.url;
     const trace = Traceroute.trace(url);

@@ -3,8 +3,10 @@ import React from 'react';
 import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
 export default function TraceRouteMap (props) {
+  console.log('Rendering TraceRouteMap');
 
 	return (
+
       <GoogleMapLoader
         containerElement={ <div style={{height: '600px'}} /> }
         googleMapElement={
@@ -13,9 +15,11 @@ export default function TraceRouteMap (props) {
             defaultCenter={{ lat: 39.480611, lng: -98.001497 }}
           >
           {props.markers.map( (marker, index) => {
-            var label = `${index}: ${marker.city}, ${marker.region} ${marker.country}`;
+            var city = marker.city != "" ? marker.city : 'Unknown city';
+            var region = marker.region != "" ? marker.region : 'Unknown region';
 
-            console.log(label);
+            index++;
+            var label = `${index}: ${city}, ${region} ${marker.country}`;
 
             return <Marker key={label} position={{ lat: marker.ll[0], lng: marker.ll[1] }} label={label} />
           } )}

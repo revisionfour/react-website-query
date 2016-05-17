@@ -6,6 +6,7 @@ import TraceRouteMap from './TraceRouteMap';
 import TraceRouteList from '../containers/TraceRouteList';
 
 class TraceRoute extends React.Component{
+
 	render(){
 		return (
 			<div>
@@ -17,6 +18,7 @@ class TraceRoute extends React.Component{
 	}
 }
 
+
 function mapStateToProps(state){
 	return {
 		markers: state.TraceRoute.traceRoute
@@ -24,3 +26,5 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps)(TraceRoute);
+
+

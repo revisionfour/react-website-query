@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 class TraceRouteList extends React.Component{
 	renderList(marker, index){
 
-		var location = `${marker.city}, ${marker.region} ${marker.country}`;
+		var city = marker.city ? marker.city : 'Unknown city';
+		var region = marker.region ? marker.region : 'Unknown region';
+
+		var location = `${city}, ${region} ${marker.country}`;
 
 		// Don't start at 1
 		index++;
@@ -19,7 +22,6 @@ class TraceRouteList extends React.Component{
 	}
 
 	render(){
-
 		console.log('Rendering TraceRouteList');
 
 		return (

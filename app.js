@@ -1,3 +1,5 @@
+'use strict';
+
 const Child = require('child_process');
 
 var express = require('express');

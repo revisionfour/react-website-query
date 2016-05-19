@@ -1,5 +1,5 @@
 node_modules
 npm-debug.log
 
-src/bundle.js
-
+#src/bundle.js
+#Removed this so that remote servers dont need to webpack

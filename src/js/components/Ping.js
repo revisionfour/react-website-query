@@ -9,9 +9,9 @@ class Ping extends React.Component{
 			<div>
 				<h1 className="text-center">Ping</h1>
 				<ul class="list-group">
-				{this.props.pingData.map(function(ping){
+				{this.props.pingData.map(function(ping, index){
 					return (
-						<li class="list-group-item">{ping}</li>
+						<li key={'ping'+index} class="list-group-item">{ping}</li>
 					);
 				})}
 				</ul>

@@ -1,6 +1,5 @@
 'use strict';
 
-
 const Child = require('child_process');
 const Dns = require('dns');
 const EventEmitter = require('events');
@@ -35,7 +34,6 @@ Dns.lookup(host.toUpperCase(), (err) => {
   const args = internals.isWin ? ['-d', host] : ['-q', 1, '-n','-w',1,'-m', 30, host];
 
   // console.log('-----command->'+command);
-
   // console.log('-----args->'+args);
 
   const traceroute = Child.spawn(command, args);
@@ -67,7 +65,7 @@ Dns.lookup(host.toUpperCase(), (err) => {
 
     emitter.emit('done', hops);
   });
-  
+
 });
 
 return emitter;
@@ -131,8 +129,3 @@ internals.parseHopNix = function (line) {
 
   return hop;
 };
-
-
-
-
-

@@ -18,4 +18,4 @@ Streams traceroute and ping data to browser via Socket.io
 
 ### Example
 
-![](https://github.com/revisionfour/react-website-query/blob/master/movingExample.gif | width=600)
+![](movingExample.gif)

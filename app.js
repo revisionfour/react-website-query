@@ -82,8 +82,6 @@ io.on('connection', function(socket){
       socket.emit('pingresult', 'FINISHED');
       console.log(`child process exited with code ${code}`);
     });
-
-
   });
 
 

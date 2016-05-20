@@ -16,3 +16,6 @@ Streams traceroute and ping data to browser via Socket.io
 	npm start
 ```
 
+### Example
+
+![](movingExample.gif | width=600)
